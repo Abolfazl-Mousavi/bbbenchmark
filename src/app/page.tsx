@@ -6,9 +6,16 @@ import { AnimatePresence, useAnimationControls } from "framer-motion";
 import { ComboboxDemo } from "@/components/ui/ComboBox";
 import { BackgroundGradient } from "@/components/ui/BackgroundGradient";
 import { motion } from "framer-motion";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 export default function Home() {
   const expandItControls = useAnimationControls();
   const MotionCard = motion(BackgroundGradient);
+  useEffect(() => {
+    if (localStorage.getItem("PC_CONFIGURATION")) {
+      redirect("/dashboard");
+    }
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

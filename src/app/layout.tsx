@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import { DataProvider } from "@/context/ContextApi";
 
 const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({
@@ -23,14 +24,16 @@ export default function RootLayout({
       <html className={manrope.className} lang="en" suppressHydrationWarning>
         <head />
         <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          <DataProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </DataProvider>
         </body>
       </html>
     </>

@@ -1,31 +1,30 @@
-import DashMain from "@/components/dashboard/DashMain";
-import Sidebar from "@/components/dashboard/Sidebar";
 import Navbar from "@/components/Navbar";
-import React from "react";
-
 import {
-  ResizableHandle,
-  ResizablePanel,
   ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
 } from "@/components/ui/resizable";
+import Sidebar from "@/components/dashboard/Sidebar";
 
-const page = () => {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <>
       <Navbar />
-      <div >
+      <div>
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={20}>
             <Sidebar />
           </ResizablePanel>
           <ResizableHandle />
           <ResizablePanel defaultSize={80}>
-            <DashMain />
+            {children}
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
     </>
   );
-};
-
-export default page;
+}
